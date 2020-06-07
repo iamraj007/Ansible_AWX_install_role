@@ -5,6 +5,9 @@ This Ansible role will install Ansible AWX (Ansible Tower open source version) w
 - Ansible installed
 - Python 2.x
 
+## How to run the role
+ansible-playbook main.yaml 
+
 ```yaml
 # After the role have been run, you will be able to see Docker container up and running hosting AWX. 
 
