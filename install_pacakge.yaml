@@ -1,0 +1,44 @@
+---
+- name: Install system packages
+  yum: 
+    name: "{{ item }}"
+    state: present 
+  with_items: 
+   - wget
+   - vim 
+   - curl 
+   - git
+   - tree 
+  register: packageout
+- debug: 
+    var=packageout
+#    verbosity=4
+
+- name: Install App requried packages-Ansible,pip,Docker
+  yum: 
+    name: "{{ item }}"
+    state: present
+  with_items: 
+   - ansible
+   - python-devel
+   - python-pip
+   - bzip2
+   - gcc-c++
+   - docker-ce
+  register: app_pckout
+- debug: var=app_pckout 
+
+- name: Start Docker service
+  service: 
+    name: docker
+    state: started
+  register: docketstart
+- debug: var=docketstart 
+
+- name: Pip install and known fix
+  shell: "{{ item }}"
+  with_items: 
+   - "ls -l "
+   - "pwd"
+  register: pipout
+- debug: var=pipout

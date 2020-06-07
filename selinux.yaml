@@ -1,0 +1,27 @@
+- name: Put SELinux in permissive mode, logging actions that would be blocked.
+  selinux:
+    policy: targeted
+#    state: permissive
+    state: disabled
+  become: yes
+  become_user: root
+
+- name: Check SE Status
+  shell: "sestatus"
+  register: seout
+  tags: sestatus
+#  fail: msg="SELinux is  {{ansible_kernel}} is vulnerable"
+#  failed_when: "'nkkkkn' in seout.stdout_lines"
+#  failed_when: seout.stdout is search('disabled') 
+
+- debug: var=seout.stdout_lines
+#  tags: sestatus
+#  fail: msg="SELinux is  {{ansible_kernel}} is vulnerable"
+#  failed_when: "'disabled' in seout.stdout_lines"
+#
+#
+#- name: Get SELinux status
+#  command: getenforce
+#  register: sestat
+#- debug:
+#    msg: "SE Linux Status: {{ sestat.stdout }}"

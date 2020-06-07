@@ -1,0 +1,11 @@
+---
+- name: Get me Public IP of machine to access AWX app on browser
+  command: "curl ifconfig.me"
+  register: my_public_ip
+- debug: var=my_public_ip.stdout
+  
+- debug: 
+    msg:
+    - "Ansible AWX migration will take few min, menwhile you may check the container logs or IP address for progress! \n  " 
+    - "If you wish to check migraion logs live run this command : docker logs -f awx_task "
+    - "AWX should be up next few min, Check IP: http://{{ my_public_ip.stdout }}:80 "

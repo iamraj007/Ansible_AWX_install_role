@@ -1,0 +1,61 @@
+---
+- name: Create app dir
+  file: 
+    path: /opt/awxapp
+    state: directory
+
+- name: Clone AWX from offical repo
+  git:
+    repo: https://github.com/ansible/awx.git
+    dest: /opt/awxapp
+  register: awx_git
+- debug: var=awx_git
+
+
+- name: Use latest tag from  AWX repo only
+  shell: "latesttag=$(git for-each-ref --sort=taggerdate --format '%(tag)' | tail -1); git checkout ${latesttag}; git branch | head -1"
+  args:
+    chdir: /opt/awxapp
+  register: git_checkout_tag
+#  ignore_errors: true
+- debug: var=git_checkout_tag
+
+
+
+- name: Update python version in script
+  shell: "head -1 inventory | sed -i 's/python3/python/g' inventory"
+  args:
+    chdir: /opt/awxapp/installer
+  register: py_update
+  ignore_errors: true
+- debug: var=py_update
+
+
+- name: Display inventory configs
+  command: ./get_inventory_config.sh
+  register: inventory_conf
+- debug: var=inventory_conf.stdout_lines
+
+
+#- name: Display inventory configs
+#  command: "cat inventory |grep -v "#" |grep . "
+#  args:
+#    chdir: /opt/awxapp/installer
+#  register: inventory_conf
+#- debug: var=inventory_conf
+
+
+- name: Ensure project directory exist
+  file: 
+    path: "{{ item }}"
+    mode: '0644'
+    recurse: yes
+  with_items:
+   - /var/lib/awx/projects
+   - /var/lib/awx/projects/mylocal
+  register: local_project
+- debug: var=local_project
+
+
+
+

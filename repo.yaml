@@ -1,0 +1,35 @@
+---
+- name: Set EPEL repository 
+  yum_repository:
+    name: epel
+    description: EPEL repo
+    state: present
+    file: epel_repo
+    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+    gpgcheck: no
+  register: epelrepo
+- debug: var=epelrepo
+
+#- name: Set Docker CE Repo
+#  yum_repository:
+#    name: Docker-CE
+#    description: Docker CE Repo
+#    state: present
+#    file: Docker-CE
+#    baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+#    gpgcheck: no
+#  register: dockerout
+#- debug: var=dockerout
+
+- name: Set Docker CE Repo
+  shell: yum-config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+  register: dockerout
+  when: ansible_os_family == "RedHat"
+- debug: var=dockerout  
+
+- name: Validate Repo
+  shell: "yum repolist | grep -e epel -e docker" 
+  register: repoout
+  failed_when: "dockerout|float == 2"
+#  changle_when: "'Docker' not in dockerout"
+- debug: var=repoout.stdout_lines

@@ -1,0 +1,23 @@
+---
+- name: Install AWX via ansible 
+  command: "ansible-playbook -i inventory install.yml -vv "
+  args:
+    chdir: /opt/awxapp/installer
+  register: install_aws
+  become: true
+- debug: var=install_aws.stdout_lines
+
+- name: Show all docker container
+  command: "docker ps "
+  register: running_doc
+- debug: var=running_doc.stdout_lines
+
+- pause:
+    prompt: "Wait for container to warm up...! "
+    seconds: 05
+
+- name: Show Docker logs of awx_task    
+  command: docker logs awx_task    
+  register: awxtaskout
+- debug: var=awxtaskout
+

@@ -1,0 +1,21 @@
+---
+- name: Pip install and known fix
+#  command: "ls -l"
+#  shell: ls -l   
+  shell: "{{ item }}"
+  with_items:
+   - "pip install --upgrade pip"
+   - "pip install six==1.10.0"
+   - "pip install six --user -U"
+   - "pip install ipython --user -U"
+   - "pip install -I requests==2.14.2"
+   - "pip install docker-compose"
+  register: pipout
+- debug: var=pipout
+
+
+- name: Install Docker Compose
+#  command: ls 
+  shell: pip install docker-compose 
+  register: composeout
+- debug: var=composeout

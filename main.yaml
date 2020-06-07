@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  tasks: 
+    - include_tasks: selinux.yaml  
+    - include_tasks: seout.yaml
+    - include_tasks: repo.yaml
+    - include_tasks: install_pacakge.yaml
+    - include_tasks: pip.yaml
+    - include_tasks: awx.yaml
+    - include_tasks: startapp.yaml
+    - include_tasks: getip.yaml

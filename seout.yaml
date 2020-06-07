@@ -1,0 +1,5 @@
+- name: Put SELinux in permissive mode, logging actions that would be blocked.
+  command: ls
+  register: lsout
+- debug: var=lsout
+
