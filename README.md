@@ -19,3 +19,12 @@ dbd0adaf5caf        ansible/awx_task:11.2.0   "tini -- /bin/sh -c …"   7 days 
 1899c7b6e056        redis                     "docker-entrypoint.s…"   7 days ago          Up 14 minutes       6379/tcp               awx_redis
 4a28bff30aad        memcached:alpine          "docker-entrypoint.s…"   7 days ago          Up 14 minutes       11211/tcp              awx_memcached
 ```
+
+AWX Docker containers Up and running    
+![AWX_Docker_Containers](https://user-images.githubusercontent.com/47947075/86494560-472a0600-bd93-11ea-96f6-eefcf912edb2.png)
+
+AWX GUI Dashboard
+![AWX Dashboard](https://user-images.githubusercontent.com/47947075/86494619-7f314900-bd93-11ea-9bcf-7f83c480a88d.png)
+
+Sample AWX Running job from AWX web GUI
+![AWX Running Job](https://user-images.githubusercontent.com/47947075/86494717-f4048300-bd93-11ea-9032-6dfd214dfc88.png) 
