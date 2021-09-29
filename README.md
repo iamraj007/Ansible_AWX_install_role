@@ -1,4 +1,4 @@
-# ![Lines of code](https://img.shields.io/tokei/lines/github/iamraj007/Ansible_AWX_install_role) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/iamraj007/Ansible_AWX_install_role) 
+# ![Lines of code](https://img.shields.io/tokei/lines/github/iamraj007/Ansible_AWX_install_role) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/iamraj007/Ansible_AWX_install_role) ![GitHub language count](https://img.shields.io/github/languages/count/iamraj007/Ansible_AWX_install_role)
 # Ansible_AWX_install
 This Ansible role will install Ansible AWX (Ansible Tower open source version) with a single role, no manual work required. Just this role.   
 
