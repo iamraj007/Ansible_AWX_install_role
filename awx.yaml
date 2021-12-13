@@ -13,7 +13,7 @@
 
 
 - name: Use latest tag from  AWX repo only
-  shell: "latesttag=$(git for-each-ref --sort=taggerdate --format '%(tag)' | tail -1); git checkout ${latesttag}; git branch | head -1"
+  shell: "git checkout tags/17.0.1"
   args:
     chdir: /opt/awxapp
   register: git_checkout_tag
